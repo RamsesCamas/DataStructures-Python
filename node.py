@@ -19,7 +19,7 @@ class Node:
 
         self.next = next
 
-    def copy(self) -> 'Node':
+    def copy(self) -> Node:
         """
         Return a copy of the node.
 
@@ -36,7 +36,7 @@ class Node:
 
         return other
 
-    def __lt__(self, other: 'Node') -> bool:
+    def __lt__(self, other: Node) -> bool:
         """Check if the current value is less than the other value.
 
         Args:
@@ -48,7 +48,7 @@ class Node:
 
         return self.value < self._parse_other_value(other)
 
-    def __le__(self, other: 'Node') -> bool:
+    def __le__(self, other: Node) -> bool:
         """Check if the current value is less than or equals to the other value.
 
         Args:
@@ -60,7 +60,7 @@ class Node:
 
         return self.value <= self._parse_other_value(other)
 
-    def __eq__(self, other: 'Node') -> bool:
+    def __eq__(self, other: Node) -> bool:
         """Check if the current value is equals to the other value.
 
         Args:
@@ -72,7 +72,7 @@ class Node:
 
         return self.value == self._parse_other_value(other)
 
-    def __ge__(self, other: 'Node') -> bool:
+    def __ge__(self, other: Node) -> bool:
         """Check if the current value is greater than or equals to the other value.
 
         Args:
@@ -84,7 +84,7 @@ class Node:
 
         return self.value >= self._parse_other_value(other)
 
-    def __ge__(self, other: 'Node') -> bool:
+    def __ge__(self, other: Node) -> bool:
         """Check if the current value is greater than the other value.
 
         Args:
@@ -98,3 +98,9 @@ class Node:
 
     def __str__(self) -> str:
         return str(self.value)
+
+
+class TwoWayNode(Node):
+    def __init__(self, value: Any, previous:Node = None, next: Node = None) -> None:
+        super().__init__(value, next)
+        self.previous = previous

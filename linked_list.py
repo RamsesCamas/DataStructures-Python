@@ -768,3 +768,73 @@ class SinglyLinkedList:
                 return False
 
         return True
+class CicularLinkedList:
+
+    _head: Optional[Node] = None
+    _size: int = 0
+
+    def __init__(self, *items):
+        """Initializes the circular linked list."""
+
+        self._head = None
+        self._size = 0
+
+        for item in items:
+            self.append(item)
+
+    @property
+    def size(self) -> int:
+        """Returns the size of the circular linked list."""
+
+        return self._size
+
+    def append(self, item: Any) -> None:
+        """Appends an item to the end of the list.
+
+        Time complexity: O(n)
+        """
+
+        if self._head is None:
+            self._head = Node(item)
+            self._head.next = self._head
+        else:
+            current = self._head
+            while current.next != self._head:
+                current = current.next
+            current.next = Node(item)
+            current.next.next = self._head
+
+        self._size += 1
+
+    def iter(self):
+        """Iterates through the circular linked list."""
+
+        current = self._head
+        while current.next != self._head:
+            value = current.value
+            current = current.next
+            yield value
+
+        yield current
+
+    def iternodes(self):
+        """Iterates through the circular linked list."""
+
+        current = self._head
+        while current.next != self._head:
+            yield current
+            current = current.next
+
+        yield current
+
+    def __iter__(self) -> None:
+        return self.iter()
+
+    def __len__(self) -> int:
+        return self._size
+
+    def __str__(self) -> str:
+        list_items = list(self.iter())
+
+        return ' -> '.join(str(item) for item in list_items)
+
