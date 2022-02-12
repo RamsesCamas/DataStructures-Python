@@ -1,7 +1,7 @@
 from typing import Any
 from my_array import Array
 
-class Grid():
+class Grid(object):
     def __init__(self,rows: int, columns:int, fill_value:Any=None) -> None:
         self.data = Array(rows)
         for row in range(rows):
